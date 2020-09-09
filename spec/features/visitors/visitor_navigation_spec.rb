@@ -12,7 +12,6 @@ RSpec.describe "Visitor navigation", type: :feature do
         expect(page).to have_link("Login")
         expect(page).to have_link("Home")
       end
-      save_and_open_page
     end
 
   end
