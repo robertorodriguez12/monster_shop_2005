@@ -17,6 +17,11 @@
           <%= link_to "Logout" %>
           <%= link_to "Profile" %>
           <p><%= "Logged in as #{current_user.name}" %></p>
+        <% elsif merchant%>
+          <%= link_to "Logout" %>
+          <%= link_to "Profile" %>
+          <p><%= "Logged in as #{current_user.name}" %></p>
+          <%= link_to "Dashboard" %>
         <% else %>
           <%= link_to "Register", "/register" %>
           <%= link_to "Login", "/login"%>
