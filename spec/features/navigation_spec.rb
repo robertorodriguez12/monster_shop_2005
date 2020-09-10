@@ -51,7 +51,7 @@ RSpec.describe 'Site Navigation' do
     end
 
     it "a logged in user sees all links and a profile and logout link" do
-      user = User.create(email: "funbucket13@gmail.com", password: "test")
+      user = User.create(email: "funbucket13@gmail.com", password: "test", name: "Mike Dao")
       visit '/'
 
       click_on "Login"
@@ -65,6 +65,7 @@ RSpec.describe 'Site Navigation' do
       within '.topnav' do
         expect(page).to have_link 'Logout'
         expect(page).to have_link 'Profile'
+        expect(page).to have_content("Logged in as #{user.name}")
         expect(page).to_not have_link 'Log In'
         expect(page).to_not have_link 'Register'
       end
