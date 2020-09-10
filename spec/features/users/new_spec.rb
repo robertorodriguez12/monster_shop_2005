@@ -68,7 +68,7 @@ RSpec.describe "User Registration", type: :feature do
       fill_in :password_confirmation, with: "password"
 
       click_on "submit"
-
+      # Add Logout button/link click here so we can see the register link again.
       visit '/items'
 
       within '.topnav' do
