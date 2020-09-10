@@ -2,6 +2,9 @@ class User < ApplicationRecord
   validates :email, uniqueness: true, presence: true
 
   validates_presence_of :password, require: true
+  
+  enum role: [:regular_user, :merchant_employee, :admin_user]
+
   has_secure_password
 
   def unique_email?
