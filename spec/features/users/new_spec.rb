@@ -52,7 +52,7 @@ RSpec.describe "User Registration", type: :feature do
     it "displays flash message saying email is duplicate" do
 
       user = User.create(email: "c_j@email.com", password: "test", name: "Mike Dao")
-
+      
       visit '/items'
 
       within '.topnav' do
