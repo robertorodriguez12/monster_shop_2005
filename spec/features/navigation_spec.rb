@@ -65,6 +65,8 @@ RSpec.describe 'Site Navigation' do
       within '.topnav' do
         expect(page).to have_link 'Logout'
         expect(page).to have_link 'Profile'
+        expect(page).to_not have_link 'Log In'
+        expect(page).to_not have_link 'Register'
       end
     end
   end
