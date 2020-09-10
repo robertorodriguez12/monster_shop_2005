@@ -128,7 +128,7 @@ You will need to set up some basic routing and empty controller actions and empt
 
 
 ```
-[ ] done
+[x] done
 
 User Story 2, Visitor Navigation
 
@@ -146,7 +146,7 @@ Next to the shopping cart link I see a count of the items in my cart
 ```
 
 ```
-[ ] done
+[x] done
 
 User Story 3, User Navigation
 
