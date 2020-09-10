@@ -43,4 +43,9 @@ Rails.application.routes.draw do
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
+
+  #==== Admin
+  # scope :admin do
+    get '/admin', to: 'admin#show'
+  # end
 end
