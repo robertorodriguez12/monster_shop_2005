@@ -87,7 +87,7 @@ RSpec.describe 'Site Navigation' do
 
       expect(page).to have_content("The page you were looking for doesn't exist.")
 
-      visit "/merchant"
+      visit "/merchants"
       expect(page).to have_content("The page you were looking for doesn't exist.")
     end
     # User Story 7, User Navigation Restrictions

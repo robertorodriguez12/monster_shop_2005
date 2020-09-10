@@ -46,6 +46,6 @@ Rails.application.routes.draw do
 
   #==== Admin
   # scope :admin do
-    get '/admin', to: 'admin#show'
+    get '/admin', to: 'admin#index'
   # end
 end

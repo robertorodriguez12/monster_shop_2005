@@ -7,7 +7,7 @@ class AdminController < ApplicationController
     render_404 unless current_user.admin_user?
    end
 
-   def show
+   def index
      require_admin
    end
 
