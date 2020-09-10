@@ -70,5 +70,33 @@ RSpec.describe 'Site Navigation' do
         expect(page).to_not have_link 'Register'
       end
     end
+
+    it "shows a 404 error for user when accessing merchant and admin page" do
+      user = User.create(email: "funbucket13@gmail.com", password: "test", name: "Mike Dao", role: 0)
+      visit '/'
+
+      click_on "Login"
+
+      expect(current_path).to eq("/login")
+
+      fill_in :email, with: user.email
+      fill_in :password, with: user.password
+      click_on "Log In"
+
+      visit "/admin"
+
+      expect(page).to have_content("The page you were looking for doesn't exist.")
+
+      visit "/merchant"
+      expect(page).to have_content("The page you were looking for doesn't exist.")
+    end
+    # User Story 7, User Navigation Restrictions
+    #
+    # As a default user
+    # When I try to access any path that begins with the following, then I see a 404 error:
+    # - '/merchant'
+    # - '/admin'
+    # ```
+
   end
 end
