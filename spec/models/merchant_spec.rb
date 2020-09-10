@@ -52,7 +52,7 @@ describe Merchant, type: :model do
       expect(@meg.distinct_cities).to include("Hershey")
     end
 
-    it "can be created as an admin" do
+    it "can be created as an merchant_employee" do
       user = User.create(email: "penelope",
                          password: "boom",
                          role: 1)
