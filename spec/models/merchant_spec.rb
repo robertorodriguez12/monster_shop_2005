@@ -52,5 +52,12 @@ describe Merchant, type: :model do
       expect(@meg.distinct_cities).to include("Hershey")
     end
 
+    it "can be created as an merchant_employee" do
+      user = User.create(email: "penelope",
+                         password: "boom",
+                         role: 1)
+      expect(user.role).to eq("merchant_employee")
+      expect(user.merchant_employee?).to be_truthy
+    end
   end
 end

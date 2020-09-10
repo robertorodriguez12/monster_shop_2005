@@ -13,9 +13,14 @@
       <%= link_to "Home", "/"%>
       <%= link_to "All Merchants", "/merchants"%>
       <%= link_to "All Items", "/items"%>
-        <% if current_user %>
+        <% if merchant? %>
           <%= link_to "Logout" %>
-          <%= link_to "Profile" %>
+          <%= link_to "Profile", "/profile" %>
+          <%= link_to "Dashboard", "/merchant" %>
+          <p><%= "Logged in as #{current_user.name}" %></p>
+        <% elsif current_user%>
+          <%= link_to "Logout" %>
+          <%= link_to "Profile", "/profile" %>
           <p><%= "Logged in as #{current_user.name}" %></p>
         <% else %>
           <%= link_to "Register", "/register" %>
