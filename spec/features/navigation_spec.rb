@@ -70,5 +70,34 @@ RSpec.describe 'Site Navigation' do
         expect(page).to_not have_link 'Register'
       end
     end
+
+    it "shows a 404 error for user when accessing admin page" do
+      user = User.create(email: "funbucket13@gmail.com", password: "test", name: "Mike Dao", role: 0)
+      visit '/'
+
+      click_on "Login"
+
+      expect(current_path).to eq("/login")
+
+      fill_in :email, with: user.email
+      fill_in :password, with: user.password
+      click_on "Log In"
+
+      visit "/admin"
+
+
+      expect(page).to have_content("The page you were looking for doesn't exist.")
+    end
+
+    it "shows error message when trying to access merchant page" do
+      user = User.create(email: "funbucket13@gmail.com", password: "test", name: "Mike Dao", role: 0)
+
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+      visit "/merchant"
+      expect(page).to have_content("404")
+    end
+
+
   end
 end
