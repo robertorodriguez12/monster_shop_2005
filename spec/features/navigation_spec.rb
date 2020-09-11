@@ -31,27 +31,11 @@ RSpec.describe 'Site Navigation' do
       within 'nav' do
         expect(page).to have_content("Cart: 0")
       end
-
     end
 
-
-    it "can login" do
-      user = User.create(email: "funbucket13@gmail.com", password: "test")
-      visit '/'
-
-      click_on "Login"
-
-      expect(current_path).to eq("/login")
-
-      fill_in :email, with: user.email
-      fill_in :password, with: user.password
-      click_on "Log In"
-
-      expect(current_path).to eq("/profile") #this need to be updated to meet us13 requirements
-    end
 
     it "a logged in user sees all links and a profile and logout link" do
-      user = User.create(email: "funbucket13@gmail.com", password: "test", name: "Mike Dao")
+      user = User.create(email: "funbucket13@gmail.com", password: "test", name: "Mike Dao", role: 0)
       visit '/'
 
       click_on "Login"
@@ -60,8 +44,7 @@ RSpec.describe 'Site Navigation' do
 
       fill_in :email, with: user.email
       fill_in :password, with: user.password
-      click_on "Log In"
-
+      click_on "Login to Account"
       within '.topnav' do
         expect(page).to have_link 'Logout'
         expect(page).to have_link 'Profile'
@@ -81,7 +64,7 @@ RSpec.describe 'Site Navigation' do
 
       fill_in :email, with: user.email
       fill_in :password, with: user.password
-      click_on "Log In"
+      click_on "Login to Account"
 
       visit "/admin"
 
@@ -89,7 +72,7 @@ RSpec.describe 'Site Navigation' do
       expect(page).to have_content("The page you were looking for doesn't exist.")
     end
 
-    it "shows error message when trying to access merchant page" do
+    it "shows error message when user trying to access merchant page" do
       user = User.create(email: "funbucket13@gmail.com", password: "test", name: "Mike Dao", role: 0)
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
@@ -109,7 +92,7 @@ RSpec.describe 'Site Navigation' do
 
       fill_in :email, with: user.email
       fill_in :password, with: user.password
-      click_on "Log In"
+      click_on "Login to Account"
 
       visit "/cart"
       expect(page).to have_content("404")
@@ -126,12 +109,11 @@ RSpec.describe 'Site Navigation' do
 
       fill_in :email, with: user.email
       fill_in :password, with: user.password
-      click_on "Log In"
+      click_on "Login to Account"
 
       visit "/merchant"
       expect(page).to have_content("404")
     end
-
 
   end
 end
