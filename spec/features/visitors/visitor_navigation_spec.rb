@@ -13,5 +13,17 @@ RSpec.describe "Visitor navigation", type: :feature do
         expect(page).to have_link("Home")
       end
     end
+
+    it "as a visitor I cannot access merchant dashboard, admin dashboard or user profile" do
+      visit '/merchant'
+      expect(page).to have_content("404")
+
+      visit '/admin'
+      expect(page).to have_content("404")
+
+      visit '/profile'
+      expect(page).to have_content("404")
+
+    end
   end
 end
