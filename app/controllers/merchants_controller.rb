@@ -1,10 +1,6 @@
 class MerchantsController <ApplicationController
 
-  before_action :require_merchant
-
   def index
-    require "pry"; binding.pry
-    require_admin
     @merchants = Merchant.all
   end
 
@@ -43,14 +39,6 @@ class MerchantsController <ApplicationController
   def destroy
     Merchant.destroy(params[:id])
     redirect_to '/merchants'
-  end
-
-  def require_merchant
-   render_404 unless current_user.merchant_employee?
-  end
-
-  def render_404
-    render file: "#{Rails.root}/public/404", status: :not_found
   end
 
   private

@@ -71,7 +71,7 @@ RSpec.describe 'Site Navigation' do
       end
     end
 
-    it "shows a 404 error for user when accessing merchant and admin page" do
+    it "shows a 404 error for user when accessing admin page" do
       user = User.create(email: "funbucket13@gmail.com", password: "test", name: "Mike Dao", role: 0)
       visit '/'
 
@@ -85,18 +85,19 @@ RSpec.describe 'Site Navigation' do
 
       visit "/admin"
 
-      expect(page).to have_content("The page you were looking for doesn't exist.")
 
-      visit "/merchants"
       expect(page).to have_content("The page you were looking for doesn't exist.")
     end
-    # User Story 7, User Navigation Restrictions
-    #
-    # As a default user
-    # When I try to access any path that begins with the following, then I see a 404 error:
-    # - '/merchant'
-    # - '/admin'
-    # ```
+
+    it "shows error message when trying to access merchant page" do
+      user = User.create(email: "funbucket13@gmail.com", password: "test", name: "Mike Dao", role: 0)
+
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+      visit "/merchant"
+      expect(page).to have_content("404")
+    end
+
 
   end
 end
