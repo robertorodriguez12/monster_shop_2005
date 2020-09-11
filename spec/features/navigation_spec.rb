@@ -98,6 +98,40 @@ RSpec.describe 'Site Navigation' do
       expect(page).to have_content("404")
     end
 
+    it "shows error message when amdmin is trying to access cart page" do
+      user = User.create(email: "funbucket13@gmail.com", password: "test", name: "Mike Dao", role: 2)
+
+      visit '/'
+
+      click_on "Login"
+
+      expect(current_path).to eq("/login")
+
+      fill_in :email, with: user.email
+      fill_in :password, with: user.password
+      click_on "Log In"
+
+      visit "/cart"
+      expect(page).to have_content("404")
+    end
+
+    it "shows error message when amdmin is trying to access /merchant page" do
+      user = User.create(email: "funbucket13@gmail.com", password: "test", name: "Mike Dao", role: 2)
+
+      visit '/'
+
+      click_on "Login"
+
+      expect(current_path).to eq("/login")
+
+      fill_in :email, with: user.email
+      fill_in :password, with: user.password
+      click_on "Log In"
+
+      visit "/merchant"
+      expect(page).to have_content("404")
+    end
+
 
   end
 end
