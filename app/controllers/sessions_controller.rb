@@ -16,10 +16,8 @@ class SessionsController < ApplicationController
         redirect_to '/profile'
       elsif merchant?
         redirect_to'/merchant'
-      elsif current_admin?
+      else current_admin?
         redirect_to '/admin'
-      else
-        redirect_to '/'
-    end
+      end
   end
 end
