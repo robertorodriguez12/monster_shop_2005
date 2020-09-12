@@ -35,14 +35,20 @@ RSpec.describe "User show page", type: :feature do
 
       expect(current_path).to eq("/profile/edit")
 
+      expect(page).to have_field(:name, :with => user.name)
+      expect(page).to have_field(:street_address, :with => user.street_address)
+      expect(page).to have_field(:city, :with => user.city)
+      expect(page).to have_field(:state, :with => user.state)
+      expect(page).to have_field(:zip, :with => user.zip)
+      expect(page).to have_field(:email, :with => user.email)
+      expect(page).to_not have_field(:password)
+
       fill_in :name, with: "Captain Jack"
       fill_in :street_address, with: "123 Main Street"
       fill_in :city, with: "Denver"
       fill_in :state, with: "CO"
       fill_in :zip, with: "11111"
       fill_in :email, with: "c_j@email.com"
-      fill_in :password, with: user.password
-      fill_in :password_confirmation, with: user.password
 
       click_on "Submit Changes"
       user = User.create(email: "c_j@email.com",
