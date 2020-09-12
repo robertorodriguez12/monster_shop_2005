@@ -1,7 +1,13 @@
 class SessionsController < ApplicationController
 
   def new
-  end
+    if session[:user_id] != nil
+      flash[:success] = "You are already logged in."
+      user = User.find(session[:user_id])
+      redirect_user
+      end
+    end
+
 
   def create
       user = User.find_by(email: params[:email])
@@ -16,12 +22,12 @@ class SessionsController < ApplicationController
   end
 
   def redirect_user
-      if current_user.role == "regular_user"
-        redirect_to '/profile'
-      elsif merchant?
-        redirect_to'/merchant'
-      else current_admin?
-        redirect_to '/admin'
-      end
+    if current_user.role == "regular_user"
+      redirect_to '/profile'
+    elsif merchant?
+      redirect_to'/merchant'
+    else current_admin?
+      redirect_to '/admin'
+    end
   end
 end
