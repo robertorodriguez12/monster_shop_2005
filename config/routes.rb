@@ -29,6 +29,8 @@ Rails.application.routes.draw do
 
   get '/register', to: "users#new"
   post '/register', to: "users#create"
+  get '/profile/edit', to: 'users#edit'
+  patch '/profile', to: 'users#update'
 
   get '/profile', to: "users#show"
 
@@ -36,6 +38,7 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
 
   get '/logout', to: 'sessions#destroy'
+
 
   namespace :merchant do
     get '/', to: "dashboard#index"
