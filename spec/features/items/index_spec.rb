@@ -57,7 +57,6 @@ RSpec.describe "Items Index Page" do
       expect(page).to_not have_content("Inactive")
       expect(page).to_not have_content("Inventory: #{@dog_bone.inventory}")
       expect(page).to_not have_css("img[src*='#{@dog_bone.image}']")
-
     end
   end
 end
