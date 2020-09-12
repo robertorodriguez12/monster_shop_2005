@@ -33,7 +33,7 @@ class UsersController < ApplicationController
       flash[:notice] = "Successfully updated your information!"
       redirect_to "/profile"
     else
-      flash[:error] = "Not fuckin working"
+      flash[:error] = "Please fill in all fields."
       render :edit
     end
   end
