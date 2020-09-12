@@ -12,10 +12,7 @@
     <%= text_field_tag :zip, current_user.zip %>
     <%= label_tag "Email Address: " %>
     <%= text_field_tag :email, current_user.email%>
-    <%= label_tag "Password: " %>
-    <%= text_field_tag :password %>
-    <%= label_tag "Confirm Password: " %>
-    <%= text_field_tag :password_confirmation %>
+    <%= hidden_field_tag :password, current_user.password_digest %>
 
     <%= submit_tag 'Submit Changes', class: :button %>
   </section>
