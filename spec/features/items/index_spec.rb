@@ -110,11 +110,11 @@ RSpec.describe "Items Index Page" do
       visit '/items'
       expect(page).to have_content("Item Statistics")
       expect(page).to have_content("Five Least Popular Items")
-      expect(page.all('li')[0].text).to eq("Pull Toy: Quantity Bought: 5")
-      expect(page.all('li')[1].text).to eq("Chain: Quantity Bought: 6")
+      expect(page.all('li')[4].text).to eq("Pull Toy: Quantity Bought: 5")
+      expect(page.all('li')[3].text).to eq("Chain: Quantity Bought: 6")
       expect(page.all('li')[2].text).to eq("Dog Bone: Quantity Bought: 7")
-      expect(page.all('li')[3].text).to eq("Chew Toy: Quantity Bought: 8")
-      expect(page.all('li')[4].text).to eq("Barbie: Quantity Bought: 9")
+      expect(page.all('li')[1].text).to eq("Chew Toy: Quantity Bought: 8")
+      expect(page.all('li')[0].text).to eq("Barbie: Quantity Bought: 9")
     end
   end
 end
