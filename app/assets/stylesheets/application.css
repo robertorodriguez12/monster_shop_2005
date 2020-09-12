@@ -159,4 +159,5 @@ tr:nth-child(even) {
 
 .right-pane {
   align-content: right;
+  float: right;
 }
