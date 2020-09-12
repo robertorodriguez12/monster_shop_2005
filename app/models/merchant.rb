@@ -25,4 +25,6 @@ class Merchant <ApplicationRecord
     item_orders.distinct.joins(:order).pluck(:city)
   end
 
+
+
 end

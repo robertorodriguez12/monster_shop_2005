@@ -4,6 +4,17 @@
 <% else %>
   <h1>All Items</h1>
 <% end %>
+  <section class="right-pane">
+    <h3> Item Statistics </h3><br>
+    <h4>Top Five Bought</h4>
+    <% @items.top_five_items.each do |item| %>
+      <li><%= "#{item.name}: Quantity Bought: #{item.item_orders.pluck(:quantity).flatten.first}" %></li>
+    <% end %><br>
+    <h4>Five Least Popular Items</h4>
+    <% @items.five_least_popular_items.each do |item| %>
+      <li><%= "#{item.name}: Quantity Bought: #{item.item_orders.pluck(:quantity).flatten.first}" %></li>
+    <% end %>
+  </section>
 <section class="grid-container">
   <% @items.each do |item| %>
   <% if item.active? == true %>
