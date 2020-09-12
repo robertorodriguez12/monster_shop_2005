@@ -1,13 +1,6 @@
 class OrdersController <ApplicationController
 
   def new
-    if current_user.nil?
-      # redirect_to cart_path, notice: "Must be #{view_context.link_to 'Registered', '/register'} or #{view_context.link_to 'Logged In', '/login'} in order to checkout".html_safe
-      # flash.now[:error] = "Must be #{view_context.link_to 'Registered', '/register'} or #{view_context.link_to 'Logged In', '/login'} in order to checkout".html_safe
-      redirect_to '/cart'
-    else
-
-    end
   end
 
   def show

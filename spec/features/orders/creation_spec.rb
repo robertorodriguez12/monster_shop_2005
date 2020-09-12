@@ -24,6 +24,13 @@ RSpec.describe("Order Creation") do
       visit "/items/#{@pencil.id}"
       click_on "Add To Cart"
 
+      user = User.create(email: "funbucket13@gmail.com", password: "test", name: "Mike Dao", role: 0)
+      visit '/'
+      click_on "Login"
+      fill_in :email, with: user.email
+      fill_in :password, with: user.password
+      click_on "Login to Account"
+      
       visit "/cart"
       click_on "Checkout"
     end
@@ -106,7 +113,5 @@ RSpec.describe("Order Creation") do
       expect(page).to have_content("Please complete address form to create an order.")
       expect(page).to have_button("Create Order")
     end
-
-
   end
 end
