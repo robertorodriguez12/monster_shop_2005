@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe "User show page", type: :feature do
-  describe "As a visitor" do
+  describe "As a user" do
     it "can login and see my info except for my password with a link to edit said data" do
       user = User.create(email: "funbucket13@gmail.com",
                         password: "test",
