@@ -29,8 +29,7 @@ class Item <ApplicationRecord
   #     joins(:item_orders).select("items.*, sum(item_orders.quantity) as total_quantity").group(:id).order("total_quantity #{direction}").limit(5)
   # end
   def self.top_five_items
-    @orders.max_by(:quanity)
-    # item_orders.order.limit(5).select
+    joins(:item_orders).group(:id).order('SUM(item_orders.quantity) DESC').limit(5)
   end
 
 end
