@@ -1,10 +1,6 @@
 class SessionsController < ApplicationController
 
   def new
-    # if session[:user_id] != nil
-    #   flash[:success] = "You're already logged in"
-    #   redirect_user
-    # end
   end
 
   def create
