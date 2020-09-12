@@ -4,6 +4,10 @@
 <% else %>
   <h1>All Items</h1>
 <% end %>
+  <section class="right-pane">
+    <h3> Item Statistics </h3>
+<%= @items.top_five_items %>
+  </section>
 <section class="grid-container">
   <% @items.each do |item| %>
   <% if item.active? == true %>

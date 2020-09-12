@@ -24,4 +24,13 @@ class Item <ApplicationRecord
   def no_orders?
     item_orders.empty?
   end
+
+  # def self.popularity(direction)
+  #     joins(:item_orders).select("items.*, sum(item_orders.quantity) as total_quantity").group(:id).order("total_quantity #{direction}").limit(5)
+  # end
+  def self.top_five_items
+    @orders.max_by(:quanity)
+    # item_orders.order.limit(5).select
+  end
+
 end
