@@ -38,6 +38,21 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_password
+    current_user.update(user_params)
+    if current_user.save
+      flash[:notice] = "Successfully updated your password!"
+      redirect_to "/profile"
+    else
+      flash[:error] = "Please have matching fields before submission."
+      render :edit_password
+    end
+  end
+
+  def edit_password
+    current_user
+  end
+
   private
 
   def user_params
