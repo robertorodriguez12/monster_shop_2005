@@ -531,15 +531,15 @@ The show page template for an order can be shared between users, merchants and a
 - Admins can fulfill items on order on behalf of a merchant
 
 ```
-[ ] done
+[x] done
 
 User Story 27, User Profile displays Orders link
 
 As a registered user
 When I visit my Profile page
-And I have orders placed in the system
-Then I see a link on my profile page called "My Orders"
-When I click this link my URI path is "/profile/orders"
+- [x] And I have orders placed in the system
+- [x] Then I see a link on my profile page called "My Orders"
+- [x] When I click this link my URI path is "/profile/orders"
 ```
 
 ```
