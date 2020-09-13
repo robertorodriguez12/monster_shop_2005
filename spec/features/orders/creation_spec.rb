@@ -24,18 +24,19 @@ RSpec.describe("Order Creation") do
       visit "/items/#{@pencil.id}"
       click_on "Add To Cart"
 
-      user = User.create(email: "funbucket13@gmail.com", password: "test", name: "Mike Dao", role: 0)
+      user = User.create(email: "c_j@email.com", password: "test", name: "Mike Dao", city: "blah", state: "blah", street_address: "blah", zip: 12345, role: 0)
       visit '/'
       click_on "Login"
       fill_in :email, with: user.email
       fill_in :password, with: user.password
       click_on "Login to Account"
-      
+
       visit "/cart"
       click_on "Checkout"
     end
 
     it 'I can create a new order' do
+
       name = "Bert"
       address = "123 Sesame St."
       city = "NYC"
@@ -96,6 +97,8 @@ RSpec.describe("Order Creation") do
     end
 
     it 'i cant create order if info not filled out' do
+      user = User.create(email: "c_j@email.com", password: "test", name: "Mike Dao", city: "blah", state: "blah", street_address: "blah", zip: 12345, role: 0)
+
       name = ""
       address = "123 Sesame St."
       city = "NYC"

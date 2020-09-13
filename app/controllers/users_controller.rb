@@ -34,7 +34,7 @@ class UsersController < ApplicationController
       redirect_to "/profile"
     else
       flash[:error] = "Please fill in all fields."
-      render :edit
+      redirect_to request.referer
     end
   end
 
