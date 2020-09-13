@@ -71,7 +71,7 @@ RSpec.describe "User show page", type: :feature do
       expect(page).to have_content("#{user.email}")
     end
 
-    it "I can Edit my Info" do
+    it "I can't leave fields blank" do
       user = User.create(email: "funbucket13@gmail.com",
                         password: "test",
                         name: "Mike Dao",
@@ -168,6 +168,50 @@ RSpec.describe "User show page", type: :feature do
 
           expect(current_path).to eq("/profile")
           expect(page).to have_content("Successfully updated your password!")
+        end
+
+        it "I can't have mismatching passwords" do
+          
+          user = User.create(email: "funbucket13@gmail.com",
+                            password: "test",
+                            name: "Mike Dao",
+                            street_address: "123 easy street",
+                            city: "Anycity",
+                            state: "Anystate",
+                            zip: 12345,
+                            role: 0)
+          visit '/'
+          click_on "Login"
+
+          fill_in :email, with: user.email
+          fill_in :password, with: user.password
+
+          click_on "Login to Account"
+
+          expect(current_path).to eq("/profile")
+          expect(page).to have_content("#{user.name}")
+          expect(page).to have_content("#{user.street_address}")
+          expect(page).to have_content("#{user.city}")
+          expect(page).to have_content("#{user.state}")
+          expect(page).to have_content("#{user.zip}")
+          expect(page).to have_content("#{user.email}")
+          expect(page).to have_link("Edit My Password")
+
+          click_link "Edit My Password"
+
+          expect(current_path).to eq("/profile/password")
+
+
+          expect(page).to have_field(:password)
+          expect(page).to have_field(:password_confirmation)
+
+          fill_in :password, with: "test2"
+          fill_in :password_confirmation, with: "test3"
+
+          click_on "Save Password"
+
+          expect(current_path).to eq("/profile/password")
+          expect(page).to have_content("Please have matching fields before submission.")
         end
       end
     end
