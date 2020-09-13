@@ -92,17 +92,13 @@ RSpec.describe "User show page", type: :feature do
         fill_in :password, with: @user.password
         click_on "Login to Account"
         click_on "My Orders"
-        # binding.pry
-        save_and_open_page
         
         expect(page).to have_content("#{@order_2.id}")
         expect(page).to have_content("#{@order_2.created_at}")
         expect(page).to have_content("#{@order_2.updated_at}")
-        # expect(page).to have_content("#{@order_2.status}")
-        # expect(page).to have_content("#{@order_2.items.count}")
-        # expect(page).to have_content("#{@order_2.total_items}")
-        
-        # binding.pry
+        expect(page).to have_content("pending")
+        expect(page).to have_content("#{@order_2.total_items}")
+        expect(page).to have_content("#{@order_2.grandtotal}")
       end
     end
   end
