@@ -495,22 +495,22 @@ The words "log in" is a link to the login page
 ```
 
 ```
-[ ] done
-
+[x] done
+- [] Test
 User Story 26, Registered users can check out
 
 As a registered user
 When I add items to my cart And I visit my cart
 - [x] I see a button or link indicating that I can check out
   - [x] And I click the button or link to check out and fill out order info and click create order
-     - [] An order is created in the system, which has a status of "pending"
+     - [x] An order is created in the system, which has a status of "pending"
      - [x] That order is associated with my user
   - [x] I am taken to my orders page ("/profile/orders")
   - [x] I see a flash message telling me my order was created
   - [x] I see my new order listed on my profile orders page
   - [x] My cart is now empty
 ```
-
+rails g migration AddNew_columnToOrders status:integer, :default => 0
 ---
 
 ## User Order Show Page
