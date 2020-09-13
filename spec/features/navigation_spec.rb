@@ -35,7 +35,7 @@ RSpec.describe 'Site Navigation' do
 
 
     it "a logged in user sees all links and a profile and logout link" do
-      user = User.create(email: "funbucket13@gmail.com", password: "test", name: "Mike Dao", role: 0)
+      user = User.create(email: "c_j@email.com", password: "test", name: "Mike Dao", city: "blah", state: "blah", street_address: "blah", zip: 12345, role: 0)
       visit '/'
 
       click_on "Login"
@@ -82,7 +82,7 @@ RSpec.describe 'Site Navigation' do
     end
 
     it "shows error message when amdmin is trying to access cart page" do
-      user = User.create(email: "funbucket13@gmail.com", password: "test", name: "Mike Dao", role: 2)
+      user = User.create(email: "c_j@email.com", password: "test", name: "Mike Dao", city: "blah", state: "blah", street_address: "blah", zip: 12345, role: 2)
 
       visit '/'
 

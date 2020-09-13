@@ -45,13 +45,13 @@ RSpec.describe "As a visitor" do
       visit "/items/#{pencil.id}"
       click_on "Add To Cart"
 
-      user = User.create(email: "funbucket13@gmail.com", password: "test", name: "Mike Dao", role: 1)
+      user = User.create(email: "c_j@email.com", password: "test", name: "Mike Dao", city: "blah", state: "blah", street_address: "blah", zip: 12345, role: 1)      
       visit '/'
       click_on "Login"
       fill_in :email, with: user.email
       fill_in :password, with: user.password
       click_on "Login to Account"
-      
+
       visit "/cart"
       click_on "Checkout"
 
