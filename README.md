@@ -542,20 +542,20 @@ When I visit my Profile page
 ```
 
 ```
-[] done
+[x] done
 
 User Story 28, User Profile displays Orders
 
 As a registered user
 When I visit my Profile Orders page, "/profile/orders"
 I see every order I've made, which includes the following information:
-- [] the ID of the order, 
-    - [] which is a link to the order show page
-- [] the date the order was made
-- [] the date the order was last updated
-- [] the current status of the order
-- [] the total quantity of items in the order
-- [] the grand total of all items for that order
+- [x] the ID of the order, 
+    - [x] which is a link to the order show page
+- [x] the date the order was made
+- [x] the date the order was last updated
+- [x] the current status of the order
+- [x] the total quantity of items in the order
+- [x] the grand total of all items for that order
 ```
 
 ```
