@@ -8,8 +8,9 @@ class User < ApplicationRecord
 
   has_secure_password
 
+  has_many :orders
+
   def unique_email?
     User.pluck(:email).include?(email)
   end
-
 end

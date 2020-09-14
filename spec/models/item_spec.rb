@@ -29,8 +29,8 @@ describe Item, type: :model do
       @review_3 = @chain.reviews.create(title: "Meh place", content: "They have meh bike stuff and I probably won't come back", rating: 1)
       @review_4 = @chain.reviews.create(title: "Not too impressed", content: "v basic bike shop", rating: 2)
       @review_5 = @chain.reviews.create(title: "Okay place :/", content: "Brian's cool and all but just an okay selection of items", rating: 3)
-
-      order = Order.create(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033)
+      @user = User.create(email: "c_j@email.com", password: "test", name: "Mike Dao", city: "blah", state: "blah", street_address: "blah", zip: 12345, role: 0)
+      @order = @user.orders.create(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033)
 
     end
 
@@ -48,7 +48,7 @@ describe Item, type: :model do
 
     it 'no orders' do
       expect(@chain.no_orders?).to eq(true)
-      order = Order.create(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033)
+      order = @user.orders.create(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033)
       order.item_orders.create(item: @chain, price: @chain.price, quantity: 2)
       expect(@chain.no_orders?).to eq(false)
     end
@@ -61,10 +61,10 @@ describe Item, type: :model do
       dog_bone = @dog_shop.items.create(name: "Dog Bone", description: "They'll love it!", price: 21, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:true, inventory: 21)
       lizard_head = @dog_shop.items.create(name: "Chew Toy", description: "Yummy", price: 500, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:true, inventory: 21)
       barbie = @dog_shop.items.create(name: "She needs a friend", description: "Very Pink", price: 1000, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:true, inventory: 21)
-      order = Order.create(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033)
-      order_1 = Order.create(name: 'Roberto', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033)
-      order_2 = Order.create(name: 'Brett', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033)
-      order_3 = Order.create(name: 'Nico', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033)
+      order = @user.orders.create(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033)
+      order_1 = @user.orders.create(name: 'Roberto', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033)
+      order_2 = @user.orders.create(name: 'Brett', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033)
+      order_3 = @user.orders.create(name: 'Nico', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033)
 
 
       order.item_orders.create(item: tire, price: tire.price, quantity: 2)
@@ -87,10 +87,10 @@ describe Item, type: :model do
       dog_bone = @dog_shop.items.create(name: "Dog Bone", description: "They'll love it!", price: 21, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:true, inventory: 21)
       lizard_head = @dog_shop.items.create(name: "Chew Toy", description: "Yummy", price: 500, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:true, inventory: 21)
       barbie = @dog_shop.items.create(name: "She needs a friend", description: "Very Pink", price: 1000, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:true, inventory: 21)
-      order = Order.create(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033)
-      order_1 = Order.create(name: 'Roberto', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033)
-      order_2 = Order.create(name: 'Brett', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033)
-      order_3 = Order.create(name: 'Nico', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033)
+      order = @user.orders.create(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033)
+      order_1 = @user.orders.create(name: 'Roberto', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033)
+      order_2 = @user.orders.create(name: 'Brett', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033)
+      order_3 = @user.orders.create(name: 'Nico', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033)
 
 
       order.item_orders.create(item: tire, price: tire.price, quantity: 2)
