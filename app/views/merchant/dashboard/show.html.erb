@@ -4,6 +4,8 @@
 <h2>State: <%= @merchant.state %></h2>
 <h2>Zip: <%= @merchant.zip %></h2>
 
+<p><%= link_to "Item List", "/merchant/items" %></p>
+
 <h3>Pending Orders</h3>
 <section id="pending-orders">
   <% @merchant.pending_orders.each do |order| %>
