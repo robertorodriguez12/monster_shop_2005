@@ -26,10 +26,8 @@ class Item <ApplicationRecord
   end
 
   def self.top_five_items
-
-    Item.joins(:item_orders)
+    joins(:item_orders)
     .select('items.id', 'sum(item_orders.quantity) AS total', 'items.name')
-    .where('item_orders.item_id = items.id')
     .group('items.id')
     .order('total desc')
     .limit(5)
@@ -38,7 +36,6 @@ class Item <ApplicationRecord
   def self.five_least_popular_items
     joins(:item_orders)
     .select('items.id', 'sum(item_orders.quantity) AS total', 'items.name')
-    .where('item_orders.item_id = items.id')
     .group('items.id')
     .order('total asc')
     .limit(5)
