@@ -3,7 +3,8 @@ require "rails_helper"
 RSpec.describe "User Registration", type: :feature do
   describe "As a visitor" do
     it "can login" do
-      user = User.create(email: "c_j@email.com", password: "test", name: "Mike Dao", city: "blah", state: "blah", street_address: "blah", zip: 12345, role: 1)
+      bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Richmond', state: 'VA', zip: 23137)
+      user = bike_shop.users.create(email: "c_j@email.com", password: "test", name: "Mike Dao", city: "blah", state: "blah", street_address: "blah", zip: 12345, role: 1)
 
       visit '/'
 
@@ -33,7 +34,8 @@ RSpec.describe "User Registration", type: :feature do
     end
 
     it "can be redirected to correct path if already logged in" do
-      user = User.create(email: "c_j@email.com", password: "test", name: "Mike Dao", city: "blah", state: "blah", street_address: "blah", zip: 12345, role: 1)
+      bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Richmond', state: 'VA', zip: 23137)
+      user = bike_shop.users.create(email: "c_j@email.com", password: "test", name: "Mike Dao", city: "blah", state: "blah", street_address: "blah", zip: 12345, role: 1)
 
       visit "/"
       click_on "Login"
