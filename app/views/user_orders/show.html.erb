@@ -10,8 +10,8 @@
     <li>Item name: <%= item.name %></li>
     <li>Description: <%= item.description %></li>
     <li>Image: <%= item.image %></li>
-    <li>Quantity: <%= item.quantity %></li>
+    <li>Quantity: <%= item.item_orders.first.quantity %></li>
     <li>Price: <%= item.price %></li>
-    <li>Subtotal: <%=item.subtotal%></li>
+    <li>Subtotal: <%=item.item_orders.first.subtotal%></li>
     <% end %>
 </ul>

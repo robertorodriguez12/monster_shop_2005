@@ -35,6 +35,7 @@ RSpec.describe("Order show Page") do
       expect(page).to have_content(@pencil.description)
       expect(page).to have_content(@pencil.price)
       expect(page).to have_content(@pencil.item_orders.first.subtotal)
+      expect(page).to have_content(@tire.item_orders.first.subtotal)
     end
   end
 end
