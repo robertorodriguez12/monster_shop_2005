@@ -31,9 +31,10 @@ RSpec.describe("Order show Page") do
       expect(page).to have_content(@order_1.created_at)
       expect(page).to have_content(@order_1.updated_at)
       expect(page).to have_content(@order_1.status)
-      expect(page).to have_content(@order_1.items)
-      expect(page).to have_content(@order_1.total_items)
-      expect(page).to have_content(@order_1.grand_total)
+      expect(page).to have_content(@pencil.name)
+      expect(page).to have_content(@pencil.description)
+      expect(page).to have_content(@pencil.price)
+      expect(page).to have_content(@pencil.item_orders.first.subtotal)
     end
   end
 end
