@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   get '/profile/password', to: "users#edit_password"
   patch '/profile/password', to: "users#update_password"
 
+
   get '/profile', to: 'users#show'
   get '/profile/orders', to: 'user_orders#index'
 
@@ -43,13 +44,17 @@ Rails.application.routes.draw do
 
   get '/logout', to: 'sessions#destroy'
 
+  get '/profile/orders/:id', to: 'user_orders#show'
+
 
   namespace :merchant do
     get '/', to: "dashboard#index"
+    resources :items, only: [:index]
+    
   end
 
   namespace :admin do
     get '/', to: 'dashboard#index'
-    resources :users, only: [:index]
+    #resources :users, only: [:index]
   end
 end

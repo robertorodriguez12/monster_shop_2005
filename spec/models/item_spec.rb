@@ -76,7 +76,7 @@ describe Item, type: :model do
       expected = [barbie, lizard_head, dog_bone, chain, pull_toy]
 
       expect(Item.top_five_items).to eq(expected)
-
+        #expect(Item.popular_items("desc")).to eq(expected) this is the test for least pop items
     end
 
     it 'bottom five items' do
@@ -99,11 +99,11 @@ describe Item, type: :model do
       order.item_orders.create(item: lizard_head, price: lizard_head.price, quantity: 8)
       order.item_orders.create(item: barbie, price: barbie.price, quantity: 9)
       order.item_orders.create(item: chain, price: chain.price, quantity: 6)
-      
+
       expected = [tire, pull_toy, chain, dog_bone, lizard_head]
 
       expect(Item.five_least_popular_items).to eq(expected)
-
+        #expect(Item.popular_items("asc")).to eq(expected) this is the test for most pop items
     end
   end
 end
