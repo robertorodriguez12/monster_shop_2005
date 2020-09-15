@@ -64,5 +64,22 @@ RSpec.describe "Merchant Show Page", type: :feature do
         expect(page).to have_content(@order_2.total_for_merchant(@bike_shop.id))
       end
     end
+
+    it "can see a link to view merchant's items" do
+      visit '/'
+
+      click_on "Login"
+
+      expect(current_path).to eq("/login")
+
+      fill_in :email, with: @user.email
+      fill_in :password, with: @user.password
+      click_on "Login to Account"
+      expect(current_path).to eq("/merchant")
+      expect(page).to have_link("Item List")
+      click_on "Item List"
+      expect(current_path).to eq("/merchant/items")
+    end
+
   end
 end
