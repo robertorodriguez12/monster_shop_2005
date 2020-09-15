@@ -171,7 +171,7 @@ RSpec.describe "User show page", type: :feature do
         end
 
         it "I can't have mismatching passwords" do
-          
+
           user = User.create(email: "funbucket13@gmail.com",
                             password: "test",
                             name: "Mike Dao",
@@ -213,6 +213,49 @@ RSpec.describe "User show page", type: :feature do
           expect(current_path).to eq("/profile/password")
           expect(page).to have_content("Please have matching fields before submission.")
         end
+      end
+
+      it "User Editing Profile Data must have unique Email address" do
+        user = User.create(email: "funbucket13@gmail.com",
+                          password: "test",
+                          name: "Mike Dao",
+                          street_address: "123 easy street",
+                          city: "Anycity",
+                          state: "Anystate",
+                          zip: 12345,
+                          role: 0)
+        user2 = User.create(email: "funbucket12@gmail.com",
+                          password: "test123",
+                          name: "Mike Do",
+                          street_address: "1222 ez street",
+                          city: "Anycity",
+                          state: "Anystate",
+                          zip: 12345,
+                          role: 0)
+
+        visit '/'
+        click_on "Login"
+
+        fill_in :email, with: user.email
+        fill_in :password, with: user.password
+
+        click_on "Login to Account"
+        visit "/profile"
+
+        click_link "Edit My Info"
+
+
+        fill_in :name, with: user.name
+        fill_in :street_address, with: user.street_address
+        fill_in :city, with: user.city
+        fill_in :state, with: user.state
+        fill_in :zip, with: user.zip
+        fill_in :email, with: user2.email
+
+        click_on "Submit Changes"
+
+        expect(current_path).to eq("/profile/edit")
+        expect(page).to have_content("This email is already in use! Please try again!!")
       end
     end
   end
