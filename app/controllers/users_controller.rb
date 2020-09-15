@@ -32,6 +32,10 @@ class UsersController < ApplicationController
     if current_user.save
       flash[:notice] = "Successfully updated your information!"
       redirect_to "/profile"
+    elsif
+      current_user.unique_email?
+        flash[:error] = "This email is already in use! Please try again!!"
+        redirect_to "/profile/edit"
     else
       flash[:error] = "Please fill in all fields."
       redirect_to request.referer
@@ -52,6 +56,7 @@ class UsersController < ApplicationController
   def edit_password
     current_user
   end
+
 
   private
 
