@@ -1,3 +1,4 @@
+require 'rails_helper'
 RSpec.describe("New Order Page") do
   describe "When I check out from my cart" do
     before(:each) do
@@ -16,7 +17,7 @@ RSpec.describe("New Order Page") do
       visit "/items/#{@pencil.id}"
       click_on "Add To Cart"
     end
-    
+
     it "I see all the information about my current cart" do
       user = User.create(email: "c_j@email.com", password: "test", name: "Mike Dao", city: "blah", state: "blah", street_address: "blah", zip: 12345, role: 0)
       visit '/'
