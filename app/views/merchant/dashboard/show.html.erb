@@ -1,0 +1,17 @@
+<h1>Welcome <%= @merchant.name %> employee</h1>
+<h2>Street Address: <%= @merchant.address %></h2>
+<h2>City: <%= @merchant.city %></h2>
+<h2>State: <%= @merchant.state %></h2>
+<h2>Zip: <%= @merchant.zip %></h2>
+
+<h3>Pending Orders</h3>
+<section id="pending-orders">
+  <% @merchant.pending_orders.each do |order| %>
+    <li id="order-<%= order.id %>">
+      <ul>Order link: <%= link_to order.id, "/merchant/orders/#{order.id}" %></ul>
+      <ul>Order made on: <%= order.created_at %></ul>
+      <ul>Quantity Ordered: <%= order.quantity_for_merchant(@merchant.id) %></ul>
+      <ul>Total Price: <%= number_to_currency(order.total_for_merchant(@merchant.id)) %></ul>
+    </li>
+  <% end %>
+</section>
