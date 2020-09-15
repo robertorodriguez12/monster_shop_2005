@@ -5,4 +5,5 @@
   <%=order.status%><br/>
   <%=order.total_items%><br/>
   <%=order.grandtotal%><br/>
+  <%= link_to "View Order", "/profile/orders/#{order.id}" %>
 <%end%>

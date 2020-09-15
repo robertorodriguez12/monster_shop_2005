@@ -4,4 +4,8 @@ class Merchant::BaseController < ApplicationController
   def require_merchant
     render file: "/public/404" unless merchant?
   end
+
+  
+
+
 end
