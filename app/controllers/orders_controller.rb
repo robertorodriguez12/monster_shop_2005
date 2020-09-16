@@ -34,7 +34,7 @@ class OrdersController <ApplicationController
       item.update(status: "unfulfilled")
     end
     order.item_orders.each do |item|
-      item
+      item.update_inventory
     end
     flash[:success] = "Your order was cancelled"
     redirect_to "/profile"
