@@ -65,5 +65,34 @@ RSpec.describe "Admin merchant index", type: :feature do
         expect(page).to_not have_content(@tire.name)
         expect(page).to_not have_content(@chain.name)
       end
+
+      it "I can see an enable button next to the merchant and click it" do
+        visit '/'
+        click_on "Login"
+        expect(current_path).to eq("/login")
+
+        fill_in :email, with: @user.email
+        fill_in :password, with: @user.password
+        click_on "Login to Account"
+        click_on "All Merchants"
+        expect(page).to have_content(@bike_shop.name)
+
+        within "#merchant-#{@bike_shop.id}" do
+          click_on "Disable"
+          expect(current_path).to eq('/admin/merchants')
+        end
+
+        within "#merchant-#{@bike_shop.id}" do
+          expect(page).to have_button('Enable')
+        end
+
+        within "#merchant-#{@bike_shop.id}" do
+          click_on "Enable"
+          expect(current_path).to eq('/admin/merchants')
+        end
+
+        expect(page).to have_content("This merchant is now enabled.")
+        save_and_open_page  
+      end
   end
 end
