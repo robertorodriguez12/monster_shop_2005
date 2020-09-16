@@ -10,8 +10,8 @@ class ItemOrder <ApplicationRecord
     price * quantity
   end
 
-  # def fulfillment
-  #   update(status: "fulfilled")
-  # end
+  def update_inventory
+    item.update(inventory: (self.quantity + self.item.inventory))
+  end
 
 end
