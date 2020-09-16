@@ -29,4 +29,8 @@ class Merchant <ApplicationRecord
     Order.joins(:items).distinct.where(items: {merchant_id: id}).where(status: 'pending')
   end
 
+  def disable
+    update(disabled: true)
+  end
+
 end
