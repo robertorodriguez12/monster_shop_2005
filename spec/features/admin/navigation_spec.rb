@@ -11,16 +11,14 @@ RSpec.describe "Admin Navigation", type: :feature do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
       visit "/admin"
-
       within '.topnav' do
         expect(page).to have_link("Home")
-        expect(page).to have_link("All Items")
         expect(page).to have_link("Profile")
         expect(page).to have_link("Logout")
         expect(page).to have_link("Dashboard")
         expect(page).to have_link("All Users")
         expect(page).to_not have_link("Cart")
-      end 
+      end
     end
 
   end
