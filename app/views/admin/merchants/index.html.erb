@@ -1,3 +1,6 @@
 <h1><%= @merchants.each do |merchant| %></h1>
-<p><%= link_to merchant.name, "/admin/merchant/#{merchant.id}" %></p
+  <section id="merchant-<%= merchant.id %>">
+    <p><%= link_to merchant.name, "/admin/merchant/#{merchant.id}" %></p>
+    <p><%= button_to 'Disable', "/admin/merchants/#{merchant.id}/disable", method: :patch, id: 'inline-form', form: { id: 'inline-form' } %></p>
+  </section>
   <% end %>
