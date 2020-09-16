@@ -29,18 +29,11 @@ RSpec.describe "Merchant Index Page", type: :feature do
       expect(current_path).to eq("/admin/merchants")
       expect(page).to have_content("Brian's Bike Shop")
       click_on "Brian's Bike Shop"
-      expect(current_path).to eq("/merchants/#{@bike_shop.id}")
+      expect(current_path).to eq("/admin/merchant/#{@bike_shop.id}")
       expect(page).to have_content(@bike_shop.name)
       expect(page).to have_content("Pending Orders")
+      save_and_open_page
     end
 
   end
-
-  # User Story 37, Admin can see a merchant's dashboard
-  #
-  # As an admin user
-  # When I visit the merchant index page ("/merchants")
-  # And I click on a merchant's name,
-  # Then my URI route should be ("/admin/merchants/6")
-  # Then I see everything that merchant would see
 end
