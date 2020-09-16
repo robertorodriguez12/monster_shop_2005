@@ -32,7 +32,6 @@ RSpec.describe "Merchant Index Page", type: :feature do
       expect(current_path).to eq("/admin/merchant/#{@bike_shop.id}")
       expect(page).to have_content(@bike_shop.name)
       expect(page).to have_content("Pending Orders")
-      save_and_open_page
     end
 
   end
