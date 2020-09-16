@@ -26,7 +26,7 @@ RSpec.describe("Order show Page") do
       click_on "My Orders"
       click_on "View Order"
       visit "/profile/orders/#{@order_1.id}"
-      save_and_open_page
+
       expect(page).to have_content(@order_1.id)
       expect(page).to have_content(@order_1.created_at)
       expect(page).to have_content(@order_1.updated_at)
@@ -36,6 +36,29 @@ RSpec.describe("Order show Page") do
       expect(page).to have_content(@pencil.price)
       expect(page).to have_content(@pencil.item_orders.first.subtotal)
       expect(page).to have_content(@tire.item_orders.first.subtotal)
+    end
+
+    it "Can cancel an order" do
+      visit '/'
+      click_on "Login"
+      fill_in :email, with: @user.email
+      fill_in :password, with: @user.password
+      click_on "Login to Account"
+      click_on "My Orders"
+      click_on "View Order"
+      visit "/profile/orders/#{@order_1.id}"
+      
+      expect(page).to have_link("Cancel Order")
+      click_on "Cancel Order"
+      expect(current_path).to eq("/profile")
+      expect(page).to have_content("Your order was cancelled")
+
+      visit "/profile/orders/#{@order_1.id}"
+      expect(page).to have_content("cancelled")  
+
+      within("#unfulfilled-#{@pencil.id}") do
+        expect(page).to have_content("Fulfillment Status: #{@pencil.item_orders.first.status}")
+      end
     end
   end
 end
