@@ -26,7 +26,6 @@ RSpec.describe("Order show Page") do
       click_on "My Orders"
       click_on "View Order"
       visit "/profile/orders/#{@order_1.id}"
-      save_and_open_page
       expect(page).to have_content(@order_1.id)
       expect(page).to have_content(@order_1.created_at)
       expect(page).to have_content(@order_1.updated_at)
