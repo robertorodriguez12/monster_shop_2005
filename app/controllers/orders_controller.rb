@@ -27,9 +27,15 @@ class OrdersController <ApplicationController
     end
   end
 
-  def update
+  def cancel
     order = Order.find(params[:id])
     order.update(status: "cancelled")
+    order.item_orders.each do |item|
+      item.update(status: "unfulfilled")
+    end
+    order.item_orders.each do |item|
+      item
+    end
     flash[:success] = "Your order was cancelled"
     redirect_to "/profile"
   end
