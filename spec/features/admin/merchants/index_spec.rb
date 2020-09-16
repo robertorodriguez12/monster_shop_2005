@@ -92,7 +92,37 @@ RSpec.describe "Admin merchant index", type: :feature do
         end
 
         expect(page).to have_content("This merchant is now enabled.")
-        save_and_open_page  
+      end
+      it "A disabled merchant's items are also disabled" do
+        visit '/'
+        click_on "Login"
+        expect(current_path).to eq("/login")
+
+        fill_in :email, with: @user.email
+        fill_in :password, with: @user.password
+        click_on "Login to Account"
+        click_on "All Merchants"
+
+        within "#merchant-#{@bike_shop.id}" do
+          click_on "Disable"
+          expect(current_path).to eq('/admin/merchants')
+        end
+
+        visit '/items'
+
+        expect(page).to_not have_content(@tire.name)
+        expect(page).to_not have_content(@chain.name)
+
+        click_on "All Merchants"
+        
+        within "#merchant-#{@bike_shop.id}" do
+          click_on "Enable"
+          expect(current_path).to eq('/admin/merchants')
+        end
+
+        visit '/items'
+        expect(page).to have_content(@tire.name)
+        expect(page).to have_content(@chain.name)
       end
   end
 end
