@@ -589,14 +589,14 @@ When I visit an order's show page
   - [x] Each row in the "order items" (Items_order) table is given a status of "unfulfilled"
   - [x] The order itself is given a status of "cancelled"
 
-  - [] Any item quantities in the order that were previously fulfilled have their quantities returned to their respective merchant's inventory for that item.
+  - [x] Any item quantities in the order that were previously fulfilled have their quantities returned to their respective merchant's inventory for that item.
   
   - [x] I am returned to my profile page
   - [x] I see a flash message telling me the order is now cancelled
   - [x] And I see that this order now has an updated status of "cancelled"
 
   - [x] Set up features test
-  - [] All test passing
+  - [x] All test passing
 ```
 
 ```
