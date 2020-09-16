@@ -31,6 +31,7 @@ class Merchant <ApplicationRecord
 
   def disable
     update(disabled: true)
+    items.update_all(active?: false)
   end
 
 end
