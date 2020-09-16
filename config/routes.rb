@@ -45,6 +45,7 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
 
   get '/profile/orders/:id', to: 'user_orders#show'
+  patch '/profile/orders/:id', to: 'orders#cancel' 
 
 
   namespace :merchant do
@@ -57,6 +58,5 @@ Rails.application.routes.draw do
     resources :merchants, only: [:index, :show]
     get '/merchant/:id', to: 'merchants#show'
     patch '/merchants/:id/:disable_enable', to: 'merchants#update'
-    #resources :users, only: [:index]
   end
 end

@@ -7,11 +7,16 @@
   <li>Date order was created: <%=@order.created_at %></li>
   <li>Date order was created: <%=@order.created_at %></li>
   <li>Items: <% @order.items.each do |item|%></li>
-    <li>Item name: <%= item.name %></li>
-    <li>Description: <%= item.description %></li>
-    <li>Image: <%= item.image %></li>
-    <li>Quantity: <%= item.item_orders.first.quantity %></li>
-    <li>Price: <%= item.price %></li>
-    <li>Subtotal: <%=item.item_orders.first.subtotal%></li>
-    <% end %>
-</ul>
+    <div id="unfulfilled-<%=item.id%>">
+      <li>Item name: <%= item.name %></li>
+      <li>Description: <%= item.description %></li>
+      <li>Image: <%= item.image %></li>
+      <li>Quantity: <%= item.item_orders.first.quantity %></li>
+      <li>Price: <%= item.price %></li>
+      <li>Subtotal: <%=item.item_orders.first.subtotal%></li>
+      <li>Fulfillment Status: <%=item.item_orders.first.status%></li>
+    </div>
+  <%end %>
+  </ul>
+  <%= link_to "Cancel Order", "/profile/orders/#{@order.id}", method: :patch%>
+  
