@@ -38,7 +38,6 @@ RSpec.describe "Admin merchant index", type: :feature do
         end
 
         expect(page).to have_content("This merchant has been disabled.")
-        save_and_open_page
       end
   end
 end
