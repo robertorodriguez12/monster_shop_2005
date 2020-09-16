@@ -45,6 +45,7 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
 
   get '/profile/orders/:id', to: 'user_orders#show'
+  patch '/profile/orders/:id', to: 'orders#update' 
 
 
   namespace :merchant do
