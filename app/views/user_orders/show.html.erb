@@ -15,7 +15,6 @@
       <li>Price: <%= item.price %></li>
       <li>Subtotal: <%=item.item_orders.first.subtotal%></li>
       <li>Fulfillment Status: <%=item.item_orders.first.status%></li>
-      <!-- <%= link_to "Mark Fulfilled", "/profile/orders/#{@order.id}", method: :patch%> -->
     </div>
   <%end %>
   </ul>
