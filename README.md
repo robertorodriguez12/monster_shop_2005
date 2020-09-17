@@ -9,10 +9,10 @@
 
 
 [Roberto Rodriguez](https://github.com/robertorodriguez12) <br>
-[Nico Rithner](https://github.com/robertorodriguez12) <br>
-[Austin Aspass](https://github.com/robertorodriguez12) <br>
-[Brett Sherman](https://github.com/robertorodriguez12) <br>
-[Jack Puchalla](https://github.com/robertorodriguez12)
+[Nico Rithner](https://github.com/nicorithner) <br>
+[Austin Aspass](https://github.com/evilaspaas1) <br>
+[Brett Sherman](https://github.com/BJSherman80) <br>
+[Jack Puchalla](https://github.com/JPuchalla)
 
 
 
