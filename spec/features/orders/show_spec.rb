@@ -78,7 +78,6 @@ RSpec.describe("Order show Page") do
       order_1.all_items_fulfilled
       visit "/profile/orders/#{order_1.id}"
 
-      save_and_open_page
       expect(page).to have_content("packaged")
     end
   end
