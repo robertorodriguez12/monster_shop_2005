@@ -9,5 +9,4 @@ class Admin::DashboardController < Admin::BaseController
     @order.update(status: "shipped")
     redirect_to request.referer
   end
-
 end
