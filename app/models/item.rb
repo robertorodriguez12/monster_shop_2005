@@ -40,4 +40,9 @@ class Item <ApplicationRecord
     .order('total asc')
     .limit(5)
   end
+
+  def disable
+    update(active?: false)
+  end
+  
 end
