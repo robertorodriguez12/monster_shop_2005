@@ -1,0 +1,12 @@
+<h1>Items for <%= current_user.merchant.name %></h1>
+  <%= current_user.merchant.items.each do |item| %>
+  <section id="item-<%= item.id %>">
+  <p>Item Name: <%= item.name %></p>
+  <p>Item Description: <%= item.description %></p>
+  <p>Item Price: <%= item.price %></p>
+  <p>Item Image: <%= item.image %></p>
+  <p>Item Inventory: <%= item.inventory %></p>
+  <p>Item Active (True/False): <%= item.active? %></p>
+  <p><%= link_to 'Deactivate', "/merchant/items/#{item.id}/disable", method: :patch %></p>
+  </section>
+  <% end %>
