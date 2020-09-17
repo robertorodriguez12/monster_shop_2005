@@ -8,10 +8,10 @@
  ## Project Partners
 
 
-[Roberto Rodriguez](https://github.com/robertorodriguez12)
-[Nico Rithner](https://github.com/robertorodriguez12)
-[Austin Aspass](https://github.com/robertorodriguez12)
-[Brett Sherman](https://github.com/robertorodriguez12)
+[Roberto Rodriguez](https://github.com/robertorodriguez12) <br>
+[Nico Rithner](https://github.com/robertorodriguez12) <br>
+[Austin Aspass](https://github.com/robertorodriguez12) <br>
+[Brett Sherman](https://github.com/robertorodriguez12) <br>
 [Jack Puchalla](https://github.com/robertorodriguez12)
 
 
