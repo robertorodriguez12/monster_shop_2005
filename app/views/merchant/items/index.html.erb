@@ -7,7 +7,11 @@
   <p>Item Image: <%= item.image %></p>
   <p>Item Inventory: <%= item.inventory %></p>
   <p>Item Active (True/False): <%= item.active? %></p>
-  <p><%= link_to 'Deactivate', "/merchant/items/#{item.id}/disable", method: :patch %></p>
+  <p><% if !item.active? %>
+    <%= link_to 'Activate', "/merchant/items/#{item.id}/enable", method: :patch %>
+  <% else %>
+    <%= link_to 'Deactivate', "/merchant/items/#{item.id}/disable", method: :patch %>
+  <% end %></p>
   <p><%= link_to 'Delete', "/merchant/items/#{item.id}/destroy", method: :delete %></p>
   </section>
   <% end %>
