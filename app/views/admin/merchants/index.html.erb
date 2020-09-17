@@ -1,4 +1,4 @@
-<h1><%= @merchants.each do |merchant| %></h1>
+<h1><% @merchants.each do |merchant| %></h1>
   <section id="merchant-<%= merchant.id %>">
     <p><%= link_to merchant.name, "/admin/merchant/#{merchant.id}" %></p>
     <p> <% if merchant.disabled %>

@@ -7,7 +7,6 @@
   <p> Order id: <%= order.id %> </p>
   <p> User: <%= order.user_id %> </p>
   <p> Date Created: <%= order.created_at %> </p>
-  <p><%= link_to "Ship", "/admin/#{order.id}/ship", method: :patch %></p>
   <% end %>
   <% end %>
 </section>
@@ -17,6 +16,7 @@
     <p> Order id: <%= order.id %> </p>
     <p> User: <%= order.user_id %> </p>
     <p> Date Created: <%= order.created_at %> </p>
+    <p><%= link_to "Ship", "/admin/#{order.id}/ship", method: :patch %></p>
   <% end %>
 <% end %>
 <h4>Shipped</h4>
