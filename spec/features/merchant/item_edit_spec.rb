@@ -34,7 +34,7 @@ RSpec.describe "Edit Item", type: :feature do
       click_on 'Update Item'
 
       expect(current_path).to eq('/merchant/items')
-
+      expect(page).to have_content("Your item has been updated.")
       within"#item-#{@tire.id}" do
         expect(page).to have_content("Diamond")
       end

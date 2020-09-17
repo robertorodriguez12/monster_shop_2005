@@ -46,6 +46,8 @@ class Merchant::ItemsController < Merchant::BaseController
     @item = Item.find(params[:id])
     @item.update(item_params)
     @item.save
+    flash[:success] = "Your item has been updated."
+
     redirect_to '/merchant/items'
   end
 
