@@ -15,6 +15,7 @@ barbie_shop = Merchant.create(name: "Austin's Barbie Shop", address: "9898 Pink 
 legos_shop = Merchant.create(name: "Nico's & Robertos Lego Shop", address: "1232 Building Block ln", city: "LA", state: "CA", zip: 90210)
 bike_shop = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
 dog_shop = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80210)
+scuba_shop = Merchant.create(name: "Jacks Scuba Shop", address: '8976 Ocean Ave', city: 'San Diego', state: 'CA', zip: 91191)
 
 #bike_shop items
 tire = bike_shop.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
@@ -31,6 +32,9 @@ barbie_2 = barbie_shop.items.create(name: "Dave", description: "Handy man", pric
 #legos items
 tower = legos_shop.items.create(name: "Castle", description: "epic and glorious", price: 22, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSKUZDbGra_dHzHxPzD-_8Sk3JjB6u9EpaXqQ&usqp=CAU", inventory: 4)
 car = legos_shop.items.create(name: "Car", description: "fast and loud", price: 56, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRl2KCh6ytGsRsHImL1gkNeEr6d_nz8yBejmg&usqp=CAU", inventory: 100)
+#scuba shop items
+scuba_steve = scuba_shop.items.create(name: "Bathtub Buddy", description: "He can dive deep", price: 2000, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQpqzsLgDQ5egPZpF-M1aNcgkK9WZiB5CVv8w&usqp=CAU", inventory: 101)
+goggles = scuba_shop.items.create(name: "Goggles", description: "Cheap and not worth the buy", price: 3, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSl4pO86Z6zPk530M4bmZHxqmgPZcO-nc8qCw&usqp=CAU", inventory: 150)
 
 user = User.create(name: "John Doe", street_address: "123 Main Street", city: "Anytown", state: "Anystate", zip: 123456, email: "funbucket13@gmail.com", password: "test", role: 0)
 user = bike_shop.users.create(name: "John", street_address: "123 Main Street", city: "Anytown", state: "Anystate", zip: 123456, email: "merchant@merchant.com", password: "test", role: 1)
