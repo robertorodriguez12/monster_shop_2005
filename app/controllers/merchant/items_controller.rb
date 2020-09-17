@@ -18,7 +18,7 @@ class Merchant::ItemsController < Merchant::BaseController
     end
   end
 
-  def update
+  def enable_disable
     @item = Item.find(params[:id])
     if params[:disable_enable] == 'enable'
       @item.enable
@@ -35,6 +35,19 @@ class Merchant::ItemsController < Merchant::BaseController
     @item = Item.find(params[:id])
     @item.destroy
     flash[:destroy] = "#{@item.name} is now deleted"
+    redirect_to '/merchant/items'
+  end
+
+  def edit
+    @item = Item.find(params[:id])
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    @item.update(item_params)
+    @item.save
+    flash[:success] = "Your item has been updated."
+
     redirect_to '/merchant/items'
   end
 
