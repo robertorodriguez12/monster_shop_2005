@@ -37,5 +37,17 @@ RSpec.describe "Admin Dashboard", type: :feature do
       expect(page).to have_content("User: #{@order_1.user_id}")
       expect(page).to have_content("Date Created: #{@order_1.created_at}")
       end
+
+      it "can ship an order" do
+        visit '/'
+        click_on "Login"
+        fill_in :email, with: @user.email
+        fill_in :password, with: @user.password
+        click_on "Login to Account"
+        visit "/admin"
+        within"#item-#{@order_1.id}" do
+          click_on "Ship"
+        end
+        end
+      end
     end
-  end

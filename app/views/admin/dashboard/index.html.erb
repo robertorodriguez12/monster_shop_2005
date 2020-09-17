@@ -2,12 +2,15 @@
 <h3>All Orders</h3>
 <h4>Packaged</h4>
 <% @orders.each do |order| %>
+<section id="item-<%=order.id%>">
   <%if order.status == "packaged" %>
-    <p> Order id: <%= order.id %> </p>
-    <p> User: <%= order.user_id %> </p>
-    <p> Date Created: <%= order.created_at %> </p>
+  <p> Order id: <%= order.id %> </p>
+  <p> User: <%= order.user_id %> </p>
+  <p> Date Created: <%= order.created_at %> </p>
+  <p><%= link_to "Ship", "/admin/#{order.id}/ship", method: :patch %></p>
   <% end %>
-<% end %>
+  <% end %>
+</section>
 <h4>Pending</h4>
 <% @orders.each do |order| %>
   <% if order.status == "pending" %>
@@ -16,15 +19,16 @@
     <p> Date Created: <%= order.created_at %> </p>
   <% end %>
 <% end %>
-
 <h4>Shipped</h4>
-<% @orders.each do |order| %>
+  <% @orders.each do |order| %>
+  <section class="item-<%=order.id%>">
   <% if order.status == "shipped" %>
-    <p> Order id: <%= order.id %> </p>
-    <p> User: <%= order.user_id %> </p>
-    <p> Date Created: <%= order.created_at %> </p>
+  <p> Order id: <%= order.id %> </p>
+  <p> User: <%= order.user_id %> </p>
+  <p> Date Created: <%= order.created_at %> </p>
   <% end %>
-<% end %>
+  <% end %>
+</section>
 
 <h4>Cancelled</h4>
 <% @orders.each do |order| %>
