@@ -44,12 +44,5 @@ class Item <ApplicationRecord
   def disable
     update(active?: false)
   end
-
-  # def self.popular_items(order)
-  #   joins(:item_orders)
-  #   .select('items.id', 'sum(item_orders.quantity) AS total', 'items.name')
-  #   .group('items.id')
-  #   .order("total #{order}")
-  #   .limit(5)
-  # end
+  
 end

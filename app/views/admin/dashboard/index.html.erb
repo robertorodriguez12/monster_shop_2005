@@ -1,1 +1,36 @@
 <h1>Admin Dashboard</h1>
+<h3>All Orders</h3>
+<h4>Packaged</h4>
+<% @orders.each do |order| %>
+  <%if order.status == "packaged" %>
+    <p> Order id: <%= order.id %> </p>
+    <p> User: <%= order.user_id %> </p>
+    <p> Date Created: <%= order.created_at %> </p>
+  <% end %>
+<% end %>
+<h4>Pending</h4>
+<% @orders.each do |order| %>
+  <% if order.status == "pending" %>
+    <p> Order id: <%= order.id %> </p>
+    <p> User: <%= order.user_id %> </p>
+    <p> Date Created: <%= order.created_at %> </p>
+  <% end %>
+<% end %>
+
+<h4>Shipped</h4>
+<% @orders.each do |order| %>
+  <% if order.status == "shipped" %>
+    <p> Order id: <%= order.id %> </p>
+    <p> User: <%= order.user_id %> </p>
+    <p> Date Created: <%= order.created_at %> </p>
+  <% end %>
+<% end %>
+
+<h4>Cancelled</h4>
+<% @orders.each do |order| %>
+  <% if order.status == "cancelled" %>
+    <p> Order id: <%= order.id %> </p>
+    <p> User: <%= order.user_id %> </p>
+    <p> Date Created: <%= order.created_at %> </p>
+  <% end %>
+<% end %>
