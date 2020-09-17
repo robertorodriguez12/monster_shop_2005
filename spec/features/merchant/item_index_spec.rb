@@ -35,6 +35,25 @@ RSpec.describe "Merchant Item Index Page", type: :feature do
       expect(page).to have_content("false")
     end
 
+    it "I can delete an item " do
+      visit '/'
+      click_on "Login"
+      expect(current_path).to eq("/login")
+
+      fill_in :email, with: @user.email
+      fill_in :password, with: @user.password
+      click_on "Login to Account"
+
+      visit '/merchant/items'
+        within"#item-#{@tire.id}" do
+          click_on "Delete"
+        end
+
+      expect(current_path).to eq('/merchant/items')
+      expect(page).to have_content("#{@tire.name} is now deleted")
+      expect(page).to_not have_content(@tire.description)
+    end
+    
     it "I can reactivate an item" do
       visit '/'
       click_on "Login"
@@ -45,10 +64,10 @@ RSpec.describe "Merchant Item Index Page", type: :feature do
       click_on "Login to Account"
 
       visit '/merchant/items'
-
-      within"#item-#{@tire.id}" do
+      
+       within"#item-#{@tire.id}" do
         click_on "Deactivate"
-      end
+       end
 
       within"#item-#{@tire.id}" do
         click_on "Activate"
@@ -67,18 +86,6 @@ RSpec.describe "Merchant Item Index Page", type: :feature do
       end
 
       expect(page).to have_content("true")
-      save_and_open_page
     end
-
   end
-
-# User Story 43, Merchant activates an item
-#
-# As a merchant employee
-# When I visit my items page
-# I see a link or button to activate the item next to each item that is inactive
-# And I click on the "activate" button or link for an item
-# I am returned to my items page
-# I see a flash message indicating this item is now available for sale
-# I see the item is now active
 end
