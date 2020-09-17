@@ -50,7 +50,7 @@ Rails.application.routes.draw do
 
   namespace :merchant do
     get '/', to: "dashboard#show"
-    patch "/items/:id/disable", to: 'items#update'
+    patch "/items/:id/:disable_enable", to: 'items#update'
     resources :items, only: [:index, :update]
   end
 
