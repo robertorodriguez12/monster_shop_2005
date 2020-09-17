@@ -27,8 +27,24 @@ describe Order, type: :model do
       @order_1.item_orders.create!(item: @tire, price: @tire.price, quantity: 2)
       @order_1.item_orders.create!(item: @pull_toy, price: @pull_toy.price, quantity: 3)
     end
+
     it 'grandtotal' do
       expect(@order_1.grandtotal).to eq(230)
     end
+
+
+    it "#all_items_fulfilled" do
+      order_1 = @user.orders.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033)
+      tire = @meg.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
+      paper = @meg.items.create(name: "Lined Paper", description: "Great for writing on!", price: 20, image: "https://cdn.vertex42.com/WordTemplates/images/printable-lined-paper-wide-ruled.png", inventory: 3)
+
+      order_1.item_orders.create!(item: tire, price: tire.price, quantity: 2, status: "fulfilled")
+      order_1.item_orders.create!(item: paper, price: paper.price, quantity: 10, status: "fulfilled")
+      order_1.all_items_fulfilled
+
+
+      expect(order_1.status).to eq("packaged")
+    end
   end
+
 end
