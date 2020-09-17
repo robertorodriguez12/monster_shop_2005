@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2020_09_16_185854) do
     t.string "name"
     t.string "description"
     t.integer "price"
-    t.string "image"
+    t.string "image", default: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.thermaxglobal.com%2Farticles%2Fchiller-for-a-packaging-manufacturer%2Fimage-not-found%2F&psig=AOvVaw3SqeK9arB6sK7IiWmYP7eZ&ust=1600460534231000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPCqpbWC8esCFQAAAAAdAAAAABAD"
     t.boolean "active?", default: true
     t.integer "inventory"
     t.bigint "merchant_id"
