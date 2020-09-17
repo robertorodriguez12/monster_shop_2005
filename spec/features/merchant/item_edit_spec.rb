@@ -9,7 +9,7 @@ RSpec.describe "Edit Item", type: :feature do
       @chain = @bike_shop.items.create(name: "Chain", description: "It'll never break", price: 40, inventory: 12, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588")
     end
 
-    it "can" do
+    it "can edit an item" do
       visit '/'
       click_on "Login"
       expect(current_path).to eq("/login")
@@ -38,6 +38,34 @@ RSpec.describe "Edit Item", type: :feature do
       within"#item-#{@tire.id}" do
         expect(page).to have_content("Diamond")
       end
+    end
+
+    it "cant edit an item with missing information" do
+      visit '/'
+      click_on "Login"
+      fill_in :email, with: @user.email
+      fill_in :password, with: @user.password
+      click_on "Login to Account"
+      visit '/merchant/items'
+
+      within"#item-#{@tire.id}" do
+        click_on "Edit"
+      end
+
+      expect(current_path).to eq("/merchant/items/#{@tire.id}/edit")
+      expect(find_field('Name').value).to eq(@tire.name)
+      expect(find_field('Description').value).to eq(@tire.description)
+      expect(find_field('Price').value).to eq('100')
+      expect(find_field('Inventory').value).to eq('12')
+      fill_in 'Name', with: ''
+      click_on 'Update Item'
+
+      expect(page).to have_content("Please fill in all fields to continue.")
+
+      expect(find_field('Name').value).to eq(@tire.name)
+      expect(find_field('Description').value).to eq(@tire.description)
+      expect(find_field('Price').value).to eq('100')
+      expect(find_field('Inventory').value).to eq('12')
     end
   end
 end

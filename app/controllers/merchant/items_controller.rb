@@ -45,10 +45,13 @@ class Merchant::ItemsController < Merchant::BaseController
   def update
     @item = Item.find(params[:id])
     @item.update(item_params)
-    @item.save
-    flash[:success] = "Your item has been updated."
-
-    redirect_to '/merchant/items'
+    if @item.save
+      flash[:success] = "Your item has been updated."
+      redirect_to '/merchant/items'
+    else
+      flash[:error] = "Please fill in all fields to continue."
+      redirect_to "/merchant/items/#{@item.id}/edit"
+    end
   end
 
   private
