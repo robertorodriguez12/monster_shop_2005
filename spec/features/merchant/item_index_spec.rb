@@ -35,5 +35,25 @@ RSpec.describe "Merchant Item Index Page", type: :feature do
       expect(page).to have_content("false")
     end
 
+    it "I can delete an item " do
+      visit '/'
+      click_on "Login"
+      expect(current_path).to eq("/login")
+
+      fill_in :email, with: @user.email
+      fill_in :password, with: @user.password
+      click_on "Login to Account"
+
+      visit '/merchant/items'
+
+        within"#item-#{@tire.id}" do
+          click_on "Delete"
+        end
+
+      expect(current_path).to eq('/merchant/items')
+      expect(page).to have_content("#{@tire.name} is now deleted")
+      expect(page).to_not have_content(@tire.description)
+    end
+
   end
 end
