@@ -50,10 +50,10 @@ Rails.application.routes.draw do
 
   namespace :merchant do
     get '/', to: "dashboard#show"
-    patch "/items/:id/:disable_enable", to: 'items#update'
+    patch "/items/:id/:disable_enable", to: 'items#enable_disable'
     delete "/items/:id/destroy", to: 'items#destroy'
 
-    resources :items, only: [:index, :update, :new, :create]
+    resources :items, except: [:show]
   end
 
   namespace :admin do
