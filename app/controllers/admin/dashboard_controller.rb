@@ -4,10 +4,10 @@ class Admin::DashboardController < Admin::BaseController
     @orders = Order.all
   end
 
-  def show
-    if current_user.role == "user_admin"
-      @admin = Admin.find(current_user.admin_id)
-    end
+  def update
+    @order = Order.find(params[:id])
+    @order.update(status: "shipped")
+    redirect_to request.referer
   end
 
 end
