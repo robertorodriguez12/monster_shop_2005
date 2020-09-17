@@ -32,5 +32,25 @@ RSpec.describe "Merchant add item", type: :feature do
       expect(page).to have_content("Tire")
     end
 
+    it "I cannot create an item with missing fields except image" do
+      visit '/'
+      click_on "Login"
+      fill_in :email, with: @user.email
+      fill_in :password, with: @user.password
+      click_on "Login to Account"
+      visit '/merchant/items'
+
+      click_on "Add New Item"
+
+      fill_in 'Description', with: "Really strong"
+      fill_in 'Price', with: 20
+      fill_in 'Inventory', with: 20
+      click_on 'Create Item'
+
+      expect(page).to have_content("Please fill in all fields to continue.")
+      expect(find_field('Description').value).to eq('Really strong')
+      expect(find_field('Price').value).to eq('20')
+      expect(find_field('Inventory').value).to eq('20')
+    end
   end
 end
