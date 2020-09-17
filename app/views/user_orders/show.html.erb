@@ -1,8 +1,8 @@
 <h2>Order: <%=@order.id%></h2>
 <ul>
+  <li>Order status: <%=@order.status %></li>
   <li>Date order was created: <%=@order.created_at %></li>
   <li>Date order was updated: <%=@order.updated_at %></li>
-  <li>Order status: <%=@order.status %></li>
   <li>Date order was created: <%=@order.created_at %></li>
   <li>Date order was created: <%=@order.created_at %></li>
   <li>Date order was created: <%=@order.created_at %></li>
@@ -19,4 +19,3 @@
   <%end %>
   </ul>
   <%= link_to "Cancel Order", "/profile/orders/#{@order.id}", method: :patch%>
-  
