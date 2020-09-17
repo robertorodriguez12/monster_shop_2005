@@ -1,5 +1,5 @@
 <h1>Items for <%= current_user.merchant.name %></h1>
-  <%= current_user.merchant.items.each do |item| %>
+  <% current_user.merchant.items.each do |item| %>
   <section id="item-<%= item.id %>">
   <p>Item Name: <%= item.name %></p>
   <p>Item Description: <%= item.description %></p>
