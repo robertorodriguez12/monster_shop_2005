@@ -33,7 +33,6 @@ RSpec.describe "Admin Dashboard", type: :feature do
       fill_in :password, with: @user.password
       click_on "Login to Account"
       visit "/admin"
-      save_and_open_page
       expect(page).to have_content("Order id: #{@order_1.id}")
       expect(page).to have_content("User: #{@order_1.user_id}")
       expect(page).to have_content("Date Created: #{@order_1.created_at}")
