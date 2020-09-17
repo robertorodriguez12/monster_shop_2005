@@ -41,6 +41,10 @@ class Item <ApplicationRecord
     .limit(5)
   end
 
+  def enable
+    update(active?: true)
+  end
+  
   def disable
     update(active?: false)
   end

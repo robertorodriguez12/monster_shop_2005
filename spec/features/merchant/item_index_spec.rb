@@ -9,7 +9,7 @@ RSpec.describe "Merchant Item Index Page", type: :feature do
       @chain = @bike_shop.items.create(name: "Chain", description: "It'll never break", price: 40, inventory: 12, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588")
     end
 
-    it "I can see all my items with information" do
+    it "I can see all my items with information and deactivate" do
       visit '/'
       click_on "Login"
       expect(current_path).to eq("/login")
@@ -35,5 +35,50 @@ RSpec.describe "Merchant Item Index Page", type: :feature do
       expect(page).to have_content("false")
     end
 
+    it "I can reactivate an item" do
+      visit '/'
+      click_on "Login"
+      expect(current_path).to eq("/login")
+
+      fill_in :email, with: @user.email
+      fill_in :password, with: @user.password
+      click_on "Login to Account"
+
+      visit '/merchant/items'
+
+      within"#item-#{@tire.id}" do
+        click_on "Deactivate"
+      end
+
+      within"#item-#{@tire.id}" do
+        click_on "Activate"
+      end
+
+      expect(current_path).to eq('/merchant/items')
+      expect(page).to have_content("This item is active again.")
+
+      within"#item-#{@tire.id}" do
+        expect(page).to have_content(@tire.name)
+        expect(page).to have_content(@tire.description)
+        expect(page).to have_content(@tire.price)
+        expect(page).to have_content(@tire.image)
+        expect(page).to have_content(@tire.active?)
+        expect(page).to have_content(@tire.inventory)
+      end
+
+      expect(page).to have_content("true")
+      save_and_open_page
+    end
+
   end
+
+# User Story 43, Merchant activates an item
+#
+# As a merchant employee
+# When I visit my items page
+# I see a link or button to activate the item next to each item that is inactive
+# And I click on the "activate" button or link for an item
+# I am returned to my items page
+# I see a flash message indicating this item is now available for sale
+# I see the item is now active
 end
