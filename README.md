@@ -128,7 +128,7 @@ You will need to set up some basic routing and empty controller actions and empt
 
 
 ```
-[ ] done
+[x] done
 
 User Story 2, Visitor Navigation
 
@@ -146,7 +146,7 @@ Next to the shopping cart link I see a count of the items in my cart
 ```
 
 ```
-[ ] done
+[x] done
 
 User Story 3, User Navigation
 
@@ -495,23 +495,22 @@ The words "log in" is a link to the login page
 ```
 
 ```
-[ ] done
-
+[x] done
+- [] Test
 User Story 26, Registered users can check out
 
 As a registered user
-When I add items to my cart
-And I visit my cart
-I see a button or link indicating that I can check out
-And I click the button or link to check out and fill out order info and click create order
-An order is created in the system, which has a status of "pending"
-That order is associated with my user
-I am taken to my orders page ("/profile/orders")
-I see a flash message telling me my order was created
-I see my new order listed on my profile orders page
-My cart is now empty
+When I add items to my cart And I visit my cart
+- [x] I see a button or link indicating that I can check out
+  - [x] And I click the button or link to check out and fill out order info and click create order
+     - [x] An order is created in the system, which has a status of "pending"
+     - [x] That order is associated with my user
+  - [x] I am taken to my orders page ("/profile/orders")
+  - [x] I see a flash message telling me my order was created
+  - [x] I see my new order listed on my profile orders page
+  - [x] My cart is now empty
 ```
-
+rails g migration AddNew_columnToOrders status:integer, :default => 0
 ---
 
 ## User Order Show Page
@@ -531,31 +530,32 @@ The show page template for an order can be shared between users, merchants and a
 - Admins can fulfill items on order on behalf of a merchant
 
 ```
-[ ] done
+[x] done
 
 User Story 27, User Profile displays Orders link
 
 As a registered user
 When I visit my Profile page
-And I have orders placed in the system
-Then I see a link on my profile page called "My Orders"
-When I click this link my URI path is "/profile/orders"
+- [x] And I have orders placed in the system
+- [x] Then I see a link on my profile page called "My Orders"
+- [x] When I click this link my URI path is "/profile/orders"
 ```
 
 ```
-[ ] done
+[x] done
 
 User Story 28, User Profile displays Orders
 
 As a registered user
 When I visit my Profile Orders page, "/profile/orders"
 I see every order I've made, which includes the following information:
-- the ID of the order, which is a link to the order show page
-- the date the order was made
-- the date the order was last updated
-- the current status of the order
-- the total quantity of items in the order
-- the grand total of all items for that order
+- [x] the ID of the order, 
+    - [x] which is a link to the order show page
+- [x] the date the order was made
+- [x] the date the order was last updated
+- [x] the current status of the order
+- [x] the total quantity of items in the order
+- [x] the grand total of all items for that order
 ```
 
 ```
@@ -584,14 +584,19 @@ User Story 30, User cancels an order
 
 As a registered user
 When I visit an order's show page
-I see a button or link to cancel the order
-When I click the cancel button for an order, the following happens:
-- Each row in the "order items" table is given a status of "unfulfilled"
-- The order itself is given a status of "cancelled"
-- Any item quantities in the order that were previously fulfilled have their quantities returned to their respective merchant's inventory for that item.
-- I am returned to my profile page
-- I see a flash message telling me the order is now cancelled
-- And I see that this order now has an updated status of "cancelled"
+- [x] I see a button or link to cancel the order
+ - [] When I click the cancel button for an order, the following happens:
+  - [x] Each row in the "order items" (Items_order) table is given a status of "unfulfilled"
+  - [x] The order itself is given a status of "cancelled"
+
+  - [x] Any item quantities in the order that were previously fulfilled have their quantities returned to their respective merchant's inventory for that item.
+  
+  - [x] I am returned to my profile page
+  - [x] I see a flash message telling me the order is now cancelled
+  - [x] And I see that this order now has an updated status of "cancelled"
+
+  - [x] Set up features test
+  - [x] All test passing
 ```
 
 ```

@@ -10,9 +10,33 @@
 
   <body>
     <nav class = "topnav">
+      <%= link_to "Home", "/"%>
+      <% if !current_admin?  %>
       <%= link_to "All Merchants", "/merchants"%>
       <%= link_to "All Items", "/items"%>
-      <%= link_to "Cart: #{cart.total_items}", "/cart" %>
+      <% end %>
+        <% if merchant? %>
+          <%= link_to "Logout", "/logout" %>
+          <%= link_to "Profile", "/profile" %>
+          <%= link_to "Dashboard", "/merchant" %>
+          <%= link_to "Cart: #{cart.total_items}", "/cart" %>
+          <p><%= "Logged in as #{current_user.name}" %></p>
+          <% elsif current_admin?%>
+          <%= link_to "All Users", "/admin/users" %>
+          <%= link_to "Dashboard", "/admin" %>
+          <%= link_to "Profile", "/profile" %>
+          <%= link_to "Logout", "/logout" %>
+          <%= link_to "All Merchants", "/admin/merchants"%>
+        <% elsif current_user%>
+          <%= link_to "Logout", "/logout" %>
+          <%= link_to "Profile", "/profile" %>
+          <%= link_to "Cart: #{cart.total_items}", "/cart" %>
+          <p><%= "Logged in as #{current_user.name}" %></p>
+        <% else %>
+          <%= link_to "Register", "/register" %>
+          <%= link_to "Login", "/login"%>
+          <%= link_to "Cart: #{cart.total_items}", "/cart" %>
+        <% end %>
     </nav>
     <% flash.each do |name, msg| %>
       <div class= "<%=name%>-flash">

@@ -31,7 +31,89 @@ RSpec.describe 'Site Navigation' do
       within 'nav' do
         expect(page).to have_content("Cart: 0")
       end
-
     end
+
+
+    it "a logged in user sees all links and a profile and logout link" do
+      user = User.create(email: "c_j@email.com", password: "test", name: "Mike Dao", city: "blah", state: "blah", street_address: "blah", zip: 12345, role: 0)
+      visit '/'
+
+      click_on "Login"
+
+      expect(current_path).to eq("/login")
+
+      fill_in :email, with: user.email
+      fill_in :password, with: user.password
+      click_on "Login to Account"
+      within '.topnav' do
+        expect(page).to have_link 'Logout'
+        expect(page).to have_link 'Profile'
+        expect(page).to have_content("Logged in as #{user.name}")
+        expect(page).to_not have_link 'Log In'
+        expect(page).to_not have_link 'Register'
+      end
+    end
+
+    it "shows a 404 error for user when accessing admin page" do
+      user = User.create(email: "funbucket13@gmail.com", password: "test", name: "Mike Dao", role: 0)
+      visit '/'
+
+      click_on "Login"
+
+      expect(current_path).to eq("/login")
+
+      fill_in :email, with: user.email
+      fill_in :password, with: user.password
+      click_on "Login to Account"
+
+      visit "/admin"
+
+
+      expect(page).to have_content("The page you were looking for doesn't exist.")
+    end
+
+    it "shows error message when user trying to access merchant page" do
+      user = User.create(email: "funbucket13@gmail.com", password: "test", name: "Mike Dao", role: 0)
+
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+      visit "/merchant"
+      expect(page).to have_content("404")
+    end
+
+    it "shows error message when amdmin is trying to access cart page" do
+      user = User.create(email: "c_j@email.com", password: "test", name: "Mike Dao", city: "blah", state: "blah", street_address: "blah", zip: 12345, role: 2)
+
+      visit '/'
+
+      click_on "Login"
+
+      expect(current_path).to eq("/login")
+
+      fill_in :email, with: user.email
+      fill_in :password, with: user.password
+      click_on "Login to Account"
+
+      visit "/cart"
+      expect(page).to have_content("404")
+    end
+
+    it "shows error message when amdmin is trying to access /merchant page" do
+      user = User.create(email: "funbucket13@gmail.com", password: "test", name: "Mike Dao", role: 2)
+
+      visit '/'
+
+      click_on "Login"
+
+      expect(current_path).to eq("/login")
+
+      fill_in :email, with: user.email
+      fill_in :password, with: user.password
+      click_on "Login to Account"
+
+      visit "/merchant"
+      expect(page).to have_content("404")
+    end
+
   end
 end

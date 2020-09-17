@@ -7,7 +7,11 @@ class CartController < ApplicationController
   end
 
   def show
-    @items = cart.items
+    if current_admin?
+      render file: "/public/404"
+    else
+     @items = cart.items
+    end
   end
 
   def empty
@@ -18,6 +22,16 @@ class CartController < ApplicationController
   def remove_item
     session[:cart].delete(params[:item_id])
     redirect_to '/cart'
+  end
+
+  def increment_decrement
+    if params[:increment_decrement] == "increment"
+      cart.add_quantity(params[:item_id]) unless cart.reached_limit?(params[:item_id])
+    elsif params[:increment_decrement] == "decrement"
+      cart.subtract_quantity(params[:item_id])
+      return remove_item if cart.quantity_zero?(params[:item_id])
+    end
+    redirect_to "/cart"
   end
 
 

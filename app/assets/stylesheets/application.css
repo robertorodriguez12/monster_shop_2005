@@ -156,3 +156,8 @@ td, th {
 tr:nth-child(even) {
   background-color: #F0F8FF;
 }
+
+.right-pane {
+  align-content: right;
+  float: right;
+}

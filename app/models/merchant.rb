@@ -1,7 +1,7 @@
 class Merchant <ApplicationRecord
   has_many :items, dependent: :destroy
   has_many :item_orders, through: :items
-
+  has_many :users
   validates_presence_of :name,
                         :address,
                         :city,
@@ -23,6 +23,20 @@ class Merchant <ApplicationRecord
 
   def distinct_cities
     item_orders.distinct.joins(:order).pluck(:city)
+  end
+
+  def pending_orders
+    Order.joins(:items).distinct.where(items: {merchant_id: id}).where(status: 'pending')
+  end
+
+  def enable
+    update(disabled: false)
+    items.update_all(active?: true)
+  end
+
+  def disable
+    update(disabled: true)
+    items.update_all(active?: false)
   end
 
 end

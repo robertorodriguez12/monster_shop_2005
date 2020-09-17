@@ -1,5 +1,4 @@
 <h1>Cart</h1>
-
 <% if !@items.empty? %>
 <center>
 <table class = "cart-items">
@@ -30,8 +29,12 @@
       </td>
       <td>
         <center>
-          <p><%=quantity%></p>
-          <p><%= link_to "Remove", "/cart/#{item.id}",method: :delete %></p>
+            <p>
+              <%= link_to '-', "/cart?increment_decrement=decrement&item_id=#{item.id}", method: :patch%>
+              <%= quantity %>
+              <%= link_to '+', "/cart?increment_decrement=increment&item_id=#{item.id}", method: :patch%>
+            </p>
+    <%= link_to "Remove", "/cart/#{item.id}",method: :delete%>
         </center>
         </td>
       <td>
@@ -40,10 +43,16 @@
     </tr>
   <% end %>
 </table>
+
   <p>Total: <%= number_to_currency(cart.total) %></p>
-  <p><%= link_to "Empty Cart", "/cart", method: :delete %></p>
-  <p><%= link_to "Checkout", "/orders/new", method: :get %></p>
-<% else %>
+  <% if current_user %>
+    <p><%= link_to "Checkout", "/orders/new", method: :get %></p>
+    <p><%= link_to "Empty Cart", "/cart", method: :delete %></p>
+  <% else %>
+    <p> Must be <%= link_to 'Registered', '/register' %> or <%= link_to 'Logged In', '/login' %> in order to checkout</p>
+    <p><%= link_to "Empty Cart", "/cart", method: :delete %></p>
+  <% end %>
+  <%else %>
   <h3 align= "center">Cart is currently empty</h3>
 <% end %>
 <table>
