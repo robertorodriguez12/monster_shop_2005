@@ -52,7 +52,7 @@ Rails.application.routes.draw do
     get '/', to: "dashboard#show"
     patch "/items/:id/:disable_enable", to: 'items#enable_disable'
     delete "/items/:id/destroy", to: 'items#destroy'
-
+    get '/orders/:id', to: 'orders#show'
     resources :items, except: [:show]
   end
 
@@ -60,6 +60,7 @@ Rails.application.routes.draw do
     get '/', to: 'dashboard#index'
     patch '/:id/ship', to: 'dashboard#update'
     resources :merchants, only: [:index, :show]
+    resources :orders, only: [:index, :show]
     get '/merchant/:id', to: 'merchants#show'
     patch '/merchants/:id/:disable_enable', to: 'merchants#update'
   end
